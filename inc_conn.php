@@ -9,32 +9,17 @@ function inverteData($data){
   }
 }
 
-//dados conexão remota - 000WebHost
-//$caminho_base = 'C:/xampp/mysql';
-/*$servername = "localhost";
-$username = "id17763918_root";
-$password = "P_Integrador2021";
-$database = "id17763918_teacherbinderdb";*/
-
-//dados conexão remota - freewha
-//$servername = "localhost";
-//$username = "321779";
-//$password = "univesp";
-//$database = "321779";
-
 //dados conexão gamepl;
-//$caminho_base = 'C:/xampp/mysql';
 $servername = "localhost";
 $username = "gamepl45_univesp";
 $password = "Univesp2021";
 $database = "gamepl45_teacherbinderdb";
 
 //dados conexão local;
-//$caminho_base = 'C:/xampp/mysql';
-//$servername = "localhost";
-//$username = "root";
-//$password = "univesp";
-//$database = "teacherbinderdb";
+$servername = "localhost";
+$username = "root";
+$password = "univesp";
+$database = "teacherbinderdb";
 
 // Create connection
 $conn = mysqli_connect($servername,$username,$password,$database);

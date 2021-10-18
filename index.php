@@ -15,6 +15,12 @@ if (isset($_GET['msg'])) {
 $msg = $_GET['msg'];
 }
 
+if (isset($_GET['efetivas'])) {
+    $efetivas = 'SIM';
+} else {
+    $efetivas = 'NAO';
+}
+
 if ($msg == 1){
     $msg = 'Você deve cadastrar a instituição de ensino antes de cadastrar turmas.';
 }
@@ -94,14 +100,18 @@ if ($msg == 2){
                 }
             }).done(function (block) {
                 alert(block);
-                refresh();
+                refresh('<?= $efetivas; ?>');
             });
         }
     }
-    function refresh() {
+    function refresh(parametro) {
         $.ajax({
             url:"cronograma_lista.php",
-            type: "html"
+            type: "html",
+            method: "post",
+            data: {
+                efetivas: parametro
+            }
         }).done(function (block) {
             $("#listaCronograma").html(block);
         });
@@ -114,12 +124,12 @@ if ($msg == 2){
             if (data == 'ok') {
                 alert('Inclusão feita com sucesso!');
                 $("#formCronograma").slideUp();
-                refresh();
+                refresh('<?= $efetivas; ?>');
             } else if (data == 'ok2') {
 
                 alert('Registro alterado com sucesso!');
                 $("#formCronograma").slideUp();
-                refresh();
+                refresh('<?= $efetivas; ?>');
             } else {
                 alert(data);
             }
@@ -129,7 +139,7 @@ if ($msg == 2){
     function cancelar() {
         $("#formCronograma").slideUp();
     }
-    refresh();
+    refresh('<?= $efetivas; ?>');
 
 </script>
 

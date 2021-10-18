@@ -2,8 +2,31 @@
 header("Access-Control-Allow-Origin: *");
 include_once 'inc_conn.php';
 
-//Pesquisa cronograma de aulas
+if (isset($_POST['efetivas'])) {
+    $efetivas = $_POST['efetivas'];
+} else {
+    $efetivas = '';
+}
+
+$efetivas = $_POST['efetivas'];
+$titulo = 'Cronograma de aulas previstas';
+$link = '<a href="index.php?efetivas=SIM">Clique aqui para verificar as aulas já dadas</a>';
+
+//Pesquisa cronograma de aulas a serem dadas
 $sql = "select v.id as id_vinculo, t.nome_turma as turma, i.nome_instituicao as instituicao, a.nome_aula as aula, v.data_prevista as data_prevista from aulas as a INNER JOIN vinculos_aulas_turmas as v ON v.id_aula = a.id INNER JOIN turmas as t ON t.id = v.id_turma INNER JOIN instituicao as i ON i.id = t.id_instituicao where a.id_usuario=$id_logado and v.data_efetiva is null order by v.data_prevista";
+
+$txt = 'Data prevista da aula';
+
+if ($efetivas == 'SIM') {
+//Pesquisa cronograma de aulas já dada
+$sql = "select v.id as id_vinculo, t.nome_turma as turma, i.nome_instituicao as instituicao, a.nome_aula as aula, v.data_prevista as data_prevista from aulas as a INNER JOIN vinculos_aulas_turmas as v ON v.id_aula = a.id INNER JOIN turmas as t ON t.id = v.id_turma INNER JOIN instituicao as i ON i.id = t.id_instituicao where a.id_usuario=$id_logado and v.data_efetiva is not null order by v.data_efetiva desc";
+
+$txt = 'Data efetiva da aula';
+$titulo = 'Cronograma de aulas efetivas';
+$link = '<a href="index.php">Clique aqui para verificar as aulas previstas</a>';
+
+}
+
 $dados = mysqli_query($conn,$sql) or die(' Erro na query:' . $sql . ' ' . mysqli_error($conn) ); 
 $total = mysqli_num_rows($dados);
 
@@ -20,7 +43,8 @@ if ($total == 0): ?>
 
     <div class="col">
     
-    <p class="h2">Cronograma de aulas</p><br>
+    <p class="h2"><?= $titulo; ?></p><br>
+    <p class="h6"><?= $link; ?><br>&nbsp;</p><br>
 
     <div class="row" id="formCronograma" style="display: none;">
 
@@ -49,7 +73,7 @@ if ($total == 0): ?>
         </div>
         <div class="col-md-2">
             <div class="row">
-            <p class="h6">Data</p>
+            <p class="h6"><?= $txt; ?></p>
             </div>
         </div>
         <div class="col-md-2">
