@@ -16,10 +16,10 @@ $password = "Univesp2021";
 $database = "gamepl45_teacherbinderdb";
 
 //dados conexão local;
-$servername = "localhost";
-$username = "root";
-$password = "univesp";
-$database = "teacherbinderdb";
+//$servername = "localhost";
+//$username = "root";
+//$password = "univesp";
+//$database = "teacherbinderdb";
 
 // Create connection
 $conn = mysqli_connect($servername,$username,$password,$database);

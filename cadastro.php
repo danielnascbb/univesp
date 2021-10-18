@@ -95,7 +95,8 @@ function Form1_Validator(theForm)
             </div>
             
             <div class="form-group row">
-               <input type="submit" border="0" name="I1" value="Cadastrar">
+               <input type="submit" class="btn btn-primary m-2" name="I1" value="Cadastrar">
+               <input type="button" onclick="window.location.assign('index.php')" class="btn btn-danger m-2" name="I1" value="Voltar">
             </div>
 
             <input type="hidden" name="funcao" value="cadastro">
@@ -112,7 +113,7 @@ function Form1_Validator(theForm)
 </center>
 
 <center> <!-- Rodapé -->
-<div class="container-fluid" style="background:#6E0065; width: 95%;">
+<div class="container-fluid" style="width: 70%;">
     <?php include 'inc_inferior.php'; ?>
 </div>
 </center>
