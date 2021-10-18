@@ -1,5 +1,0 @@
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^piunivesp.eu5.org$ [NC,OR]
-RewriteCond %{HTTP_HOST} ^www.piunivesp.eu5.org$
-RewriteCond %{REQUEST_URI} !univesp/
-RewriteRule (.*) /univesp/$1 [L]
