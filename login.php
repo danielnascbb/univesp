@@ -73,6 +73,10 @@ function Form1_Validator(theForm)
 	  <div align="center"><font face="Verdana" color="#FF0000">Cadastro efetuado com sucesso!</font></div>
 	  <? endif; ?>
 
+    <? if ($msg == 'recupera'): ?>
+	  <div align="center"><font face="Verdana" color="#FF0000">Nova senha enviada por e-mail!</font></div>
+	  <? endif; ?>
+
   <div class="col d-flex justify-content-center">
     <div class="row align-items-center">
     
@@ -89,6 +93,7 @@ function Form1_Validator(theForm)
                 <input type="submit" class="btn btn-primary m-2" name="I1" value="Logar">
                 </div>
             </div>
+            <div align="left"><font face="Verdana" size="1" color="#808080"><a href="recupera_senha.php">Esqueceu a senha, clique aqui!</a></font></div>
 			      <div align="left"><font face="Verdana" size="1" color="#808080"><a href="cadastro.php">Se não tem cadastro, clique aqui!</a></font></div>
             <input type="hidden" name="funcao" value="login">
 

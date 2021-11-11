@@ -1,12 +1,16 @@
 <?
 include 'inc_conn.php';
 
-if ($sessao == 'SIM') {
+if ($sessao != 'SIM') {
    header('Location:index.php');
    exit;
 }
 
+if (isset($_GET['msg'])) {
 $msg = $_GET['msg'];
+} else {
+$msg = "";
+}
 
 ?>
 <html>
@@ -19,12 +23,19 @@ $msg = $_GET['msg'];
 function Form1_Validator(theForm)
 {
 
-    if (theForm.email.value.length < 5)
+  if (theForm.senha.value.length < 5)
   {
-    alert("E-mail inválido.");
-    theForm.email.focus();
+    alert("Digite a senha com, pelo menos, 5 caracteres.");
+    theForm.senha.focus();
     return (false);
-  }  
+  }
+
+  if (theForm.senha.value != theForm.senha2.value)
+  {
+    alert("Senhas não coincidem.");
+    theForm.senha.focus();
+    return (false);
+  }
    
   return (true);
 }
@@ -36,14 +47,21 @@ function Form1_Validator(theForm)
 
 <body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
 
+<center> <!-- Topo -->
+<Br>&nbsp;<br>
+<div class="container-fluid" style="width: 70%;">
+    <?php include 'inc_topo.php'; ?>
+</div>
+</center>
+
 <center> <!-- Corpo -->
 <div class="container-fluid" style="width: 65%;">
-<div class="texto_principal"><font face="Verdana" color="#808080"><br>Recupere a senha</font></div>
+<div class="texto_principal"><font face="Verdana" color="#808080"><br>Trocar sua senha</font></div>
 
-<?php if ($msg == 1): ?>
-	  <div align="center"><font face="Verdana" color="#FF0000">E-mail não cadastrado.</font></div>
-<?php endif; ?>
-      
+<? if ($msg == 'senhaok'){ ?>
+	  <div align="center"><font face="Verdana" color="#FF0000">Senha alterada com sucesso.</font></div>
+<? } ?>
+    
 <div class="box">
     <div class="row align-items-center">
     
@@ -52,8 +70,12 @@ function Form1_Validator(theForm)
             <form method="post" name="Form1" onsubmit="return Form1_Validator(this)" language="JavaScript" action="funcao_recupera_senha.php">
         
             <div class="form-group row">
-            <div align="left" class="col-md-4 col-form-label">E-mail:</div>
-               <input class="form-control col" type="text" name="email" id="email" placeholder="email@email" size="30">
+            <div align="left" class="col-md-4 col-form-label">Nova Senha:</div>
+               <input class="form-control col" type="password" name="senha" id="senha" placeholder="********" size="10">
+            </div>
+            <div class="form-group row">
+            <div align="left" class="col-md-4 col-form-label">Confirme a Senha:</div>
+               <input class="form-control col" type="password" name="senha2" id="senha2" placeholder="********" size="10">
             </div>
             
             <div class="form-group row">
@@ -61,7 +83,7 @@ function Form1_Validator(theForm)
                <input type="button" onclick="window.location.assign('index.php')" class="btn btn-danger m-2" name="I1" value="Voltar">
             </div>
 
-            <input type="hidden" name="funcao" value="1">
+            <input type="hidden" name="funcao" value="2">
 
             </form>
 

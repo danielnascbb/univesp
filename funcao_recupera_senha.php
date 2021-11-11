@@ -35,17 +35,16 @@ function gerar_senha($tamanho, $maiusculas, $minusculas, $numeros, $simbolos){
 }
 
 
-$ip = $_SERVER['REMOTE_ADDR'];
-$datahora = date("Y-m-d H:i:s");
-$email = $_POST['email'];
 $funcao = $_POST['funcao'];
 
 if ($funcao == "") {
 $funcao = $_GET['funcao'];
 }
 
-//Gera senha temporária e envia e-mail
+//Gera senha envia e-mail
 if ($funcao == "1") {
+
+    $email = $_POST['email'];
 
     if ($email == "") {
     exit ("Erro de processamento!");
@@ -102,12 +101,44 @@ if ($funcao == "1") {
     }
     
     if ($resposta == 'OK') {
-    header('Location:recupera_senha.php?msg=ok');
+        header('Location:login.php?msg=recupera');
+        } else {
+        echo "Erro no envio do e-mail.";
+        exit;
+        }
     }
-    else {
-    echo "Erro no envio do e-mail.";
-    exit;
+
+}
+
+
+//Troca senha
+if ($funcao == "2") {
+
+    if ($sessao != 'SIM') {
+        header('Location:index.php');
+        exit;
+     }
+
+    $senha = $_POST['senha'];
+
+    if ($senha == "") {
+    exit ("Erro de processamento!");
     }
+
+    if ($id_logado == "") {
+        exit ("Erro de processamento!");
+    }
+                          
+    $senhacodificada = md5($senha);
+
+    $sql = mysqli_query($conn, "UPDATE usuario SET senha = '$senhacodificada' WHERE id = $id_logado");
+    
+    if(!$sql){
+    echo "Erro de processamento: ".mysqli_error($conn);
+    }else{
+
+    header('Location:trocar_senha.php?msg=senhaok');
+
     }
 
 }
