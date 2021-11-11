@@ -69,7 +69,7 @@ if ($funcao == "1") {
             }
             
     
-    $senha = gerar_senha(8, true, true, true, false);
+    $senha = gerar_senha(4, true, true, true, false);
     $senhacodificada = md5($senha);
 
     $sql = mysqli_query($conn, "UPDATE usuario SET senha = '$senhacodificada' WHERE id = $r_id");
