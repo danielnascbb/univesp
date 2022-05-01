@@ -56,14 +56,14 @@ if ($total == 0): ?>
 <div class="container" style="width: 100%;">
 
 <div class="row bg-light align-items-center p-1">
-        <div class="col-md-3">
-            <div class="row">
-            <p class="h6">Turma</p>
-            </div>
-        </div>
         <div class="col-md-2">
             <div class="row">
             <p class="h6">Instituição</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+            <p class="h6">Turma</p>
             </div>
         </div>
         <div class="col-md-2">
@@ -110,14 +110,14 @@ while ($row =  mysqli_fetch_array($dados)) {
 <div class="container" style="width: 100%;">
 
 <div class="row <?=$color;?> align-items-center p-1">
-        <div class="col-md-3">
-            <div class="row">
-            <p class="h6"><?=$nome_turma;?></p>
-            </div>
-        </div>
         <div class="col-md-2">
             <div class="row">
             <p class="h6"><?=$instituicao;?></p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+            <p class="h6"><?=$nome_turma;?></p>
             </div>
         </div>
         <div class="col-md-2">

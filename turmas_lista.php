@@ -20,7 +20,7 @@ if ($total == 0): ?>
 <div class="container" style="width: 100%;">
 
 <div class="row justify-content-center">
-    <p class="h6">&nbsp;<br>Clique no nome da turma para vincular aulas à ela.</p>
+    <p class="h6">&nbsp;<br><a href="#">Clique no nome da turma para vincular aulas à ela.</a><br>&nbsp;</p>
 </div>
 
 <div class="row bg-light align-items-center p-1">

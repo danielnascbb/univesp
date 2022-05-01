@@ -1,0 +1,4 @@
+
+Propostas de atualizações
+
+- Botões "excluir" -> Não funcionar caso tenha vínculos. Ex.: Excluir aula que tenha agendamento com alguma turma.

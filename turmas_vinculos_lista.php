@@ -10,7 +10,7 @@ $dados = mysqli_query($conn,$sql) or die(' Erro na query:' . $sql . ' ' . mysqli
 $total = mysqli_num_rows($dados);
 
 //Busca aulas disponíveis para vínculo com a turma selecionada
-$sql2 = "select a.id as id_aula, a.nome_aula as nome_aula from aulas as a WHERE NOT EXISTS (select * from vinculos_aulas_turmas where id_aula=a.id and id_turma=$id)";
+$sql2 = "select a.id as id_aula, a.nome_aula as nome_aula from aulas as a WHERE NOT EXISTS (select * from vinculos_aulas_turmas where id_aula=a.id and id_turma=$id) order by a.nome_aula";
 $dados2 = mysqli_query($conn,$sql2) or die(' Erro na query:' . $sql2 . ' ' . mysqli_error($conn) ); 
 $total2 = mysqli_num_rows($dados2);
 
