@@ -45,6 +45,17 @@ if ($acao == "gravar") {
     echo "Registro excluído com sucesso!";
     }
 
+} else if ($acao == "reativar") {
+    $id = $_POST["id"];
+
+    $sql = mysqli_query($conn, "UPDATE vinculos_aulas_turmas SET data_efetiva = NULL where id=$id");
+    
+    if(!$sql){
+    echo "Erro: ".mysqli_error($conn);
+    }else{
+    echo "Aula reativada.";
+    }
+
 }
 
 include "inc_conn_close.php";

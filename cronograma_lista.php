@@ -13,13 +13,13 @@ $titulo = 'Cronograma de aulas previstas';
 $link = '<a href="index.php?efetivas=SIM">Clique aqui para verificar as aulas já dadas</a>';
 
 //Pesquisa cronograma de aulas a serem dadas
-$sql = "select v.id as id_vinculo, t.nome_turma as turma, i.nome_instituicao as instituicao, a.nome_aula as aula, v.data_prevista as data_prevista from aulas as a INNER JOIN vinculos_aulas_turmas as v ON v.id_aula = a.id INNER JOIN turmas as t ON t.id = v.id_turma INNER JOIN instituicao as i ON i.id = t.id_instituicao where a.id_usuario=$id_logado and v.data_efetiva is null order by v.data_prevista";
+$sql = "select v.id as id_vinculo, t.nome_turma as turma, i.nome_instituicao as instituicao, a.nome_aula as aula, v.data_prevista as data from aulas as a INNER JOIN vinculos_aulas_turmas as v ON v.id_aula = a.id INNER JOIN turmas as t ON t.id = v.id_turma INNER JOIN instituicao as i ON i.id = t.id_instituicao where a.id_usuario=$id_logado and v.data_efetiva is null order by v.data_prevista";
 
 $txt = 'Data prevista da aula';
 
 if ($efetivas == 'SIM') {
 //Pesquisa cronograma de aulas já dada
-$sql = "select v.id as id_vinculo, t.nome_turma as turma, i.nome_instituicao as instituicao, a.nome_aula as aula, v.data_prevista as data_prevista from aulas as a INNER JOIN vinculos_aulas_turmas as v ON v.id_aula = a.id INNER JOIN turmas as t ON t.id = v.id_turma INNER JOIN instituicao as i ON i.id = t.id_instituicao where a.id_usuario=$id_logado and v.data_efetiva is not null order by v.data_efetiva desc";
+$sql = "select v.id as id_vinculo, t.nome_turma as turma, i.nome_instituicao as instituicao, a.nome_aula as aula, v.data_efetiva as data from aulas as a INNER JOIN vinculos_aulas_turmas as v ON v.id_aula = a.id INNER JOIN turmas as t ON t.id = v.id_turma INNER JOIN instituicao as i ON i.id = t.id_instituicao where a.id_usuario=$id_logado and v.data_efetiva is not null order by v.data_efetiva desc";
 
 $txt = 'Data efetiva da aula';
 $titulo = 'Cronograma de aulas efetivas';
@@ -98,7 +98,7 @@ while ($row =  mysqli_fetch_array($dados)) {
     $nome_turma = $row['turma'];
     $nome_aula = $row['aula'];
     $instituicao = $row['instituicao'];
-    $data_prevista = $row['data_prevista'];
+    $data_prevista = $row['data'];
 
     if ($color == "bg-secondary") {
         $color = "bg-light";
@@ -132,7 +132,11 @@ while ($row =  mysqli_fetch_array($dados)) {
         </div>
         <div class="col-md-2">
             <div class="row">
-            <p class="h6"><input type="submit" onclick="editar('<?=$id_vinculo;?>')" class="btn btn-primary" value="Aula dada"></p>
+                <? if ($efetivas == 'SIM') { ?>
+                    <p class="h6"><input type="submit" onclick="reativar('<?=$id_vinculo;?>')" class="btn btn-primary" value="Reativar aula"></p>
+                <? } else { ?>
+                    <p class="h6"><input type="submit" onclick="editar('<?=$id_vinculo;?>')" class="btn btn-primary" value="Aula dada"></p>
+                <? } ?>
             </div>
         </div>
         <div class="col-md-1">

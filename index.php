@@ -136,6 +136,23 @@ if ($msg == 2){
                         
         });
     }
+    function reativar(idv) {
+        if (confirm("Deseja realmente reativar esta aula?")) {
+            //alert(idv);
+            $.ajax({
+                url: "cronograma_gravar.php",
+                method: "post",
+                type: "html",
+                data: {
+                    id: idv,
+                    acao: "reativar"
+                }
+            }).done(function (block) {
+                alert(block);
+                refresh('<?= $efetivas; ?>');
+            });
+        }
+    }
     function cancelar() {
         $("#formCronograma").slideUp();
     }
