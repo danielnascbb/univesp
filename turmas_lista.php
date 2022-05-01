@@ -26,12 +26,12 @@ if ($total == 0): ?>
 <div class="row bg-light align-items-center p-1">
         <div class="col-md-4">
             <div class="row">
-            <p class="h6">Turma</p>
+            <p class="h6">Instituição</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="row">
-            <p class="h6">Instituição</p>
+            <p class="h6">Turma</p>
             </div>
         </div>
         <div class="col-md-2">
@@ -70,12 +70,12 @@ while ($row =  mysqli_fetch_array($dados)) {
     <div class="row <?=$color;?> align-items-center p-1">
         <div class="col-md-4">
             <div class="row">
-            <p class="h6"><a href="turmas_vinculos.php?id=<?=$id_turma;?>"><font color="black"><?=$nome_turma;?></font></a></p>
+            <p class="h6"><?=$instituicao;?></p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="row">
-            <p class="h6"><?=$instituicao;?></p>
+            <p class="h6"><a href="turmas_vinculos.php?id=<?=$id_turma;?>"><font color="black"><?=$nome_turma;?></font></a></p>
             </div>
         </div>
         <div class="col-md-2">
