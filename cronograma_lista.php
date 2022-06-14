@@ -38,17 +38,26 @@ if ($total == 0): ?>
             </div>
         </div>
     </div>
+    <? $txt_audio = 'Não há aulas cadastradas.'; ?>
     
 <? else: ?>
 
     <div class="col">
     
-    <p class="h2"><?= $titulo; ?></p><br>
+    <p class="h2"><?= $titulo; ?> - <a href='#' onclick="getAudio()"><img src='img/audio-icon.png' height="25px" title="Transcrição em audio" /></a></p><br><div id="player"></div><br>
     <p class="h6"><?= $link; ?><br>&nbsp;</p><br>
 
     <div class="row" id="formCronograma" style="display: none;">
 
     </div>
+
+    <?
+    if ($efetivas != 'SIM') {
+        $txt_audio = 'Suas próximas aulas são: ';
+    } else {
+        $txt_audio = 'Suas últimas aulas foram: ';
+    }
+    ?>
 
 </div>
 <? endif; ?>
@@ -92,6 +101,7 @@ if ($total == 0): ?>
 
 <?
 $color = "bg-light";
+$count_audio = 0;
 while ($row =  mysqli_fetch_array($dados)) {
 
     $id_vinculo = $row['id_vinculo'];
@@ -99,6 +109,12 @@ while ($row =  mysqli_fetch_array($dados)) {
     $nome_aula = $row['aula'];
     $instituicao = $row['instituicao'];
     $data_prevista = $row['data'];
+
+    $count_audio = $count_audio + 1;
+
+    if ($count_audio <= 2) {
+    $txt_audio = $txt_audio.'Instituição: '.$instituicao.', Turma: '.$nome_turma.', Aula: '.$nome_aula.', Data: '.inverteData($data_prevista).';';
+    }
 
     if ($color == "bg-secondary") {
         $color = "bg-light";
@@ -150,4 +166,19 @@ while ($row =  mysqli_fetch_array($dados)) {
 <?
 }
 include 'inc_conn_close.php';
+//echo $txt_audio;
 ?>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+function getAudio(){
+	jQuery.ajax({
+		url:'get_audio.php',
+		type:'post',
+		data:'txt=<?= substr($txt_audio, 0, 240); ?>',
+		success:function(result){
+			jQuery('#player').html(result);
+		}
+	});
+}
+</script>
