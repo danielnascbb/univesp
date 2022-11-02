@@ -46,6 +46,7 @@ if ($total == 0): ?>
     
     <p class="h2"><?= $titulo; ?> - <a href='#' onclick="getAudio()"><img src='img/audio-icon.png' height="25px" title="Transcrição em audio" /></a></p><br><div id="player"></div><br>
     <p class="h6"><?= $link; ?><br>&nbsp;</p><br>
+    <p class="h6"><a target="_blank" href="relatorio.php">Clique aqui para gerar relatório de aulas</a><br>&nbsp;</p><br>
 
     <div class="row" id="formCronograma" style="display: none;">
 

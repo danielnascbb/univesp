@@ -12,6 +12,16 @@ if ($funcao == "") {
     }
     
 if ($funcao == "login") {
+
+    // Login teste
+    if ($email == 'univesp' and $senha == '1234'){
+        $_SESSION['id_logado'] = '1';
+        $_SESSION['nome_logado'] = 'Teste';
+        $_SESSION['email_logado'] = 'teste@teste.com.br';
+                         
+        header('location:index.php');
+    exit;
+    }
     
 	$senha = md5($senha);
 	
