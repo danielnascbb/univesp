@@ -1,5 +1,4 @@
-node {
+
     stage('Teste API') {
         sh 'curl -X POST http://localhost/univesp/api.php'
     }
-}
