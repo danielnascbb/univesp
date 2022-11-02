@@ -1,5 +1,5 @@
 node {
     stage('Teste API') {
-        bat 'curl -X POST http://localhost/univesp/api.php'
+        bat 'curl -X POST http://localhost/univesp/api.php?id=1'
     }
 }
