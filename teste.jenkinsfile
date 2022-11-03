@@ -1,6 +1,6 @@
 node {
     stage('Teste API') {
         //bat 'curl -X GET -g -H "Content-Type: application/json, charset=UTF-8" -d {"id": "1"} http://localhost/univesp/api.php'
-        bat 'curl --data {"id": "1"} http://localhost/univesp/api.php'
+        bat 'curl -g --data {"id": "1"} http://localhost/univesp/api.php'
     }
 }
