@@ -1,5 +1,5 @@
 node {
     stage('Teste API') {
-        bat 'curl -X GET -H "Content-Type: application/json, charset=UTF-8" -d "id=1" http://localhost/univesp/api.php'
+        bat 'curl -X GET -H "Content-Type: application/json, charset=UTF-8" http://localhost/univesp/api.php?id=1'
     }
 }
